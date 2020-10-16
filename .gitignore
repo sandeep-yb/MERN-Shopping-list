@@ -1,1 +1,7 @@
+# Server side dependencies
 /node_modules
+
+# Client side dependencies
+/client/node_modules
+
+/build
