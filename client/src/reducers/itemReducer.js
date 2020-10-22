@@ -1,5 +1,5 @@
 import { GET_ITEMS,DELETE_ITEM, ADD_ITEM, ITEMS_LOADING } from '../actions/types';
-import { v4 as uuid } from "uuid";
+// import { v4 as uuid } from "uuid";
 
 const initialState = {
   items: [],

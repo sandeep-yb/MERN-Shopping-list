@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux';
-import itemReducer from './itemReducer';
+import { combineReducers } from "redux";
+import itemReducer from "./itemReducer";
 
-const initialState = {};
+// const initialState = {};
 
 export default combineReducers({
-    item: itemReducer
+  item: itemReducer,
 });

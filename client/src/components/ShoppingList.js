@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container, Button, ListGroup, ListGroupItem } from "reactstrap";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { v4 as uuid } from "uuid";
+// import { v4 as uuid } from "uuid";
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import { getItems, deleteItem } from "../actions/itemActions";
