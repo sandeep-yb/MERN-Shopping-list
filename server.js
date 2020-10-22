@@ -22,7 +22,7 @@ mongoose
   });
 
 //Routes
-app.use("/items", itemRouter);
+app.use("/api/items", itemRouter);
 
 const port = process.env.PORT || 5000;
 
