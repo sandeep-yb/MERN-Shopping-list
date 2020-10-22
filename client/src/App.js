@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { NavBar, ShoppingList } from "./components/";
+import { NavBar, ShoppingList } from "./components";
 
 function App() {
   return (
