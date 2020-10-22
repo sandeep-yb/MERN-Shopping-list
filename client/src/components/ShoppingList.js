@@ -3,11 +3,13 @@ import { Container, Button, ListGroup, ListGroupItem } from "reactstrap";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { v4 as uuid } from "uuid";
 import { connect } from "react-redux";
-import { getItems } from "../actions/itemActions";
+import PropTypes from 'prop-types';
+import { getItems, deleteItem } from "../actions/itemActions";
+
 
 class ShoppingList extends Component {
   componentDidMount() {
-    getItems();
+    this.props.getItems();
   }
 
   addItem = () => {
@@ -21,9 +23,7 @@ class ShoppingList extends Component {
   };
 
   deleteItem = (id) => {
-    this.setState({
-      items: this.state.items.filter((item) => item.id !== id),
-    });
+    this.props.deleteItem(id);
   };
 
   render() {
@@ -58,8 +58,14 @@ class ShoppingList extends Component {
   }
 }
 
+ShoppingList.propTypes = {
+  getItems: PropTypes.func.isRequired,
+  item: PropTypes.object.isRequired
+}
+
 const mapDispatchToProps = {
   getItems,
+  deleteItem
 };
 
 const mapStateToProps = (state) => ({
