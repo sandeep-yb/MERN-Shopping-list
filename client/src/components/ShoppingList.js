@@ -2,16 +2,13 @@ import React, { Component } from "react";
 import { Container, Button, ListGroup, ListGroupItem } from "reactstrap";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { v4 as uuid } from "uuid";
+import { connect } from "react-redux";
+import { getItems } from "../actions/itemActions";
 
 class ShoppingList extends Component {
-  state = {
-    items: [
-      { id: uuid(), name: "Eggs" },
-      { id: uuid(), name: "bread" },
-      { id: uuid(), name: "milk" },
-      { id: uuid(), name: "carrot" },
-    ],
-  };
+  componentDidMount() {
+    getItems();
+  }
 
   addItem = () => {
     const name = prompt("Enter the item name");
@@ -30,7 +27,7 @@ class ShoppingList extends Component {
   };
 
   render() {
-    const { items } = this.state;
+    const { items } = this.props.item;
 
     return (
       <div>
@@ -61,4 +58,12 @@ class ShoppingList extends Component {
   }
 }
 
-export default ShoppingList;
+const mapDispatchToProps = {
+  getItems,
+};
+
+const mapStateToProps = (state) => ({
+  item: state.item,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShoppingList);

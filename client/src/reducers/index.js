@@ -1,15 +1,8 @@
 import { combineReducers } from 'redux';
-import { v4 as uuid } from'uuid';
+import itemReducer from './itemReducer';
 
-const initialState = {
-  items: [
-    { id: uuid(), name: "Eggs" },
-    { id: uuid(), name: "bread" },
-    { id: uuid(), name: "milk" },
-    { id: uuid(), name: "carrot" },
-  ],
-};
+const initialState = {};
 
 export default combineReducers({
-    
+    item: itemReducer
 });
