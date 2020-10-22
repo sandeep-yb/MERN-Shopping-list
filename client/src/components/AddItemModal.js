@@ -39,7 +39,7 @@ class AddItemModal extends Component {
         e.preventDefault();
 
         const newItem = {
-            id: uuid(),
+            // id: uuid(),
             name: this.state.name 
         };
 

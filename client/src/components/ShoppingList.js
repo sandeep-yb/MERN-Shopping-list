@@ -8,14 +8,13 @@ import { getItems, deleteItem } from "../actions/itemActions";
 
 
 class ShoppingList extends Component {
+
   componentDidMount() {
     this.props.getItems();
   }
 
-  
-
-  deleteItem = (id) => {
-    this.props.deleteItem(id);
+  deleteItem = (_id) => {
+    this.props.deleteItem(_id);
   };
 
   render() {
@@ -27,12 +26,12 @@ class ShoppingList extends Component {
           <ListGroup>
             <TransitionGroup>
               {items.map((item) => (
-                <CSSTransition key={item.id} timeout={500} classNames="fade">
+                <CSSTransition key={item._id} timeout={500} classNames="fade">
                   <ListGroupItem>
                     <Button
                       color="danger"
                       size="sm"
-                      onClick={() => this.deleteItem(item.id)}
+                      onClick={() => this.deleteItem(item._id)}
                       style={{ margin: "0.5rem" }}
                     >
                       &times;
