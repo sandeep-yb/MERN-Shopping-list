@@ -1,4 +1,4 @@
-import { GET_ITEMS,DELETE_ITEM } from '../actions/types';
+import { GET_ITEMS,DELETE_ITEM, ADD_ITEM } from '../actions/types';
 import { v4 as uuid } from "uuid";
 
 const initialState = {
@@ -21,6 +21,12 @@ const itemReducer = (state = initialState, action) =>  {
             return {
                 ...state,
                 items : state.items.filter(item => item.id !== action.payload)
+            }
+
+        case ADD_ITEM: 
+            return {
+                ...state,
+                items: [action.payload, ...state.items]
             }
         
         default :

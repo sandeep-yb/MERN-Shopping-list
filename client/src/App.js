@@ -1,12 +1,16 @@
 import React from "react";
 import "./App.css";
-import { NavBar, ShoppingList } from "./components";
+import { Container } from "reactstrap";
+import { NavBar, ShoppingList, AddItemModal } from "./components";
 
 function App() {
   return (
     <div className="App">
       <NavBar />
-      <ShoppingList />
+      <Container>
+        <AddItemModal />
+        <ShoppingList />
+      </Container>
     </div>
   );
 }

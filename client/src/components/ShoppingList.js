@@ -12,15 +12,7 @@ class ShoppingList extends Component {
     this.props.getItems();
   }
 
-  addItem = () => {
-    const name = prompt("Enter the item name");
-    if (name) {
-      const { items } = this.state;
-      this.setState({
-        items: [...items, { id: uuid(), name }],
-      });
-    }
-  };
+  
 
   deleteItem = (id) => {
     this.props.deleteItem(id);
@@ -32,7 +24,6 @@ class ShoppingList extends Component {
     return (
       <div>
         <Container>
-          <Button onClick={this.addItem}>Add Item</Button>
           <ListGroup>
             <TransitionGroup>
               {items.map((item) => (
