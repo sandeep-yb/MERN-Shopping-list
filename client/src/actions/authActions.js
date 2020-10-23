@@ -6,6 +6,7 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
   GET_ERRORS,
+  LOGOUT_SUCCESS,
 } from "./types";
 import { getErrors } from "./errorActions";
 
@@ -82,3 +83,10 @@ export const register = (user) => (dispatch) => {
       );
     });
 };
+
+
+export  const logout = () => dispatch => {
+    dispatch({
+        type: LOGOUT_SUCCESS
+    });
+}

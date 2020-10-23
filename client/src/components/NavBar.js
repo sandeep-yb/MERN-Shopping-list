@@ -10,6 +10,7 @@ import {
   Container,
 } from "reactstrap";
 import RegisterModal from "./auth/RegisterModal";
+import Logout from "./auth/Logout";
 
 class NavBar extends Component {
   state = {
@@ -33,6 +34,9 @@ class NavBar extends Component {
               <Nav className="ml-auto">
                 <NavItem>
                   <RegisterModal />
+                </NavItem>
+                <NavItem>
+                  <Logout />
                 </NavItem>
               </Nav>
             </Collapse>
