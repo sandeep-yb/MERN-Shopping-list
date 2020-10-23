@@ -10,7 +10,10 @@ const Item = require("../models/Item");
 router.get("/", (req, res) => {
   Item.find()
     .sort({ date: -1 })
-    .then((items) => res.json(items))
+    .then((items) => {
+      // console.log('items',items);
+      res.json(items);
+    })
     .catch((err) => err.status(404).json(err));
 });
 

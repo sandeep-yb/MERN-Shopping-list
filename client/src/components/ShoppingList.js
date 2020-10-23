@@ -10,6 +10,7 @@ import { getItems, deleteItem } from "../actions/itemActions";
 class ShoppingList extends Component {
 
   componentDidMount() {
+    // console.log('componentDIDMount');
     this.props.getItems();
   }
 
