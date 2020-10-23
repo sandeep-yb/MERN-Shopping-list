@@ -1,5 +1,12 @@
 import axios from "axios";
-import { USER_LOADED, USER_LOADING, AUTH_ERROR } from "./types";
+import {
+  USER_LOADED,
+  USER_LOADING,
+  AUTH_ERROR,
+  REGISTER_SUCCESS,
+  REGISTER_FAILURE,
+  GET_ERRORS,
+} from "./types";
 import { getErrors } from "./errorActions";
 
 export const loadUser = (token) => (dispatch) => {
@@ -26,20 +33,52 @@ export const loadUser = (token) => (dispatch) => {
 };
 
 export const tokenConfig = (token) => {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
 
-    if (token) config.headers["x-auth-token"] = token;
+  if (token) config.headers["x-auth-token"] = token;
 
-    return config;
-}
+  return config;
+};
 
 export const setUserLoading = () => {
-//   console.log("setUserloading");
+  //   console.log("setUserloading");
   return {
     type: USER_LOADING,
   };
+};
+
+export const register = (user) => (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const body = JSON.stringify(user);
+
+  axios
+    .post("http://localhost:5000/api/users", body, config)
+    .then((res) =>
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: res.data,
+      })
+    )
+    .catch((err) => {
+      dispatch({
+        type: REGISTER_FAILURE,
+      });
+
+      dispatch(
+        getErrors(
+          err.response.data.msg,
+          err.response.status,
+          "REGISTER_FAILURE"
+        )
+      );
+    });
 };

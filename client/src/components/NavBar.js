@@ -9,6 +9,7 @@ import {
   NavLink,
   Container,
 } from "reactstrap";
+import RegisterModal from "./auth/RegisterModal";
 
 class NavBar extends Component {
   state = {
@@ -16,9 +17,9 @@ class NavBar extends Component {
   };
 
   handleToggle = () => {
-      this.setState({
-          isOpen: !this.state.isOpen
-      });
+    this.setState({
+      isOpen: !this.state.isOpen,
+    });
   };
 
   render() {
@@ -31,7 +32,7 @@ class NavBar extends Component {
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto">
                 <NavItem>
-                  <NavLink href="/">Github</NavLink>
+                  <RegisterModal />
                 </NavItem>
               </Nav>
             </Collapse>
