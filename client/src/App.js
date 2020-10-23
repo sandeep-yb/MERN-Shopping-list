@@ -1,18 +1,35 @@
-import React from "react";
+import React, { Component } from "react";
 import "./App.css";
 import { Container } from "reactstrap";
 import { NavBar, ShoppingList, AddItemModal } from "./components";
+import { loadUser } from "./actions/authActions";
+import { connect } from "react-redux";
 
-function App() {
-  return (
-    <div className="App">
-      <NavBar />
-      <Container>
-        <AddItemModal />
-        <ShoppingList />
-      </Container>
-    </div>
-  );
+class App extends Component {
+  componentDidMount() {
+    // console.log('CDM',this.props.token);
+    this.props.loadUser(this.props.token);
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <NavBar />
+        <Container>
+          <AddItemModal />
+          <ShoppingList />
+        </Container>
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapDispatchToProps = {
+  loadUser,
+};
+
+const mapStateToProps = (state) => ({
+  token: state.auth.token,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

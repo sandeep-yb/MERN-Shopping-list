@@ -4,7 +4,7 @@ import axios from "axios";
 export const getItems = () => (dispatch) => {
   dispatch(setItemsLoading());
 
-  axios.get("/api/items").then((res) => {
+  axios.get("http://localhost:5000/api/items").then((res) => {
     // console.log("getItems", res);
     dispatch({
       type: GET_ITEMS,
@@ -14,7 +14,7 @@ export const getItems = () => (dispatch) => {
 };
 
 export const deleteItem = (_id) => (dispatch) => {
-  axios.delete(`/api/items/${_id}`).then((res) => {
+  axios.delete(`http://localhost:5000/api/items/${_id}`).then((res) => {
     dispatch({
       type: DELETE_ITEM,
       payload: _id,
@@ -23,7 +23,7 @@ export const deleteItem = (_id) => (dispatch) => {
 };
 
 export const addItem = (newItem) => (dispatch) => {
-  axios.post("/api/items", newItem).then((res) =>
+  axios.post("http://localhost:5000/api/items", newItem).then((res) =>
     dispatch({
       type: ADD_ITEM,
       payload: res.data,

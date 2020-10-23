@@ -52,7 +52,6 @@ app.use("/api/items", require("./routes/items"));
 app.use("/api/users", require("./routes/users"));
 app.use("/api/auth", require("./routes/auth"));
 
-
 //Serve static files
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
