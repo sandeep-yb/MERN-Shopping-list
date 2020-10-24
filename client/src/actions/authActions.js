@@ -6,18 +6,21 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
   GET_ERRORS,
+  LOGIN_FAILURE,
+  LOGIN_SUCCESS,
   LOGOUT_SUCCESS,
 } from "./types";
 import { getErrors } from "./errorActions";
 
-export const loadUser = (token) => (dispatch) => {
-  console.log("load user", token);
+export const loadUser = () => (dispatch, getState) => {
   dispatch(setUserLoading());
 
-  // const token = getState().auth().token;
+  const token = getState().auth.token;
+  console.log("inside loadUser token ", token);
+  console.log("inside loadUser localstorage " + localStorage.getItem("token"));
 
   axios
-    .get("http://localhost:5000/api/auth/user", tokenConfig(token))
+    .get("http://localhost:5000/api/auth/user", tokenConfig(getState))
     .then((res) =>
       dispatch({
         type: USER_LOADED,
@@ -33,7 +36,9 @@ export const loadUser = (token) => (dispatch) => {
     });
 };
 
-export const tokenConfig = (token) => {
+export const tokenConfig = (getState) => {
+  const token = getState().auth.token;
+
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -84,9 +89,36 @@ export const register = (user) => (dispatch) => {
     });
 };
 
+export const login = (user) => (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
 
-export  const logout = () => dispatch => {
-    dispatch({
-        type: LOGOUT_SUCCESS
+  const body = JSON.stringify(user);
+
+  axios
+    .post("http://localhost:5000/api/auth", body, config)
+    .then((res) =>
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data,
+      })
+    )
+    .catch((err) => {
+      dispatch({
+        type: LOGIN_FAILURE,
+      });
+
+      dispatch(
+        getErrors(err.response.data.msg, err.response.status, "LOGIN_FAILURE")
+      );
     });
-}
+};
+
+export const logout = () => (dispatch) => {
+  dispatch({
+    type: LOGOUT_SUCCESS,
+  });
+};

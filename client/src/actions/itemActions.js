@@ -1,5 +1,6 @@
 import { ADD_ITEM, DELETE_ITEM, GET_ITEMS, ITEMS_LOADING } from "./types";
 import axios from "axios";
+import { tokenConfig } from './authActions';
 
 export const getItems = () => (dispatch) => {
   dispatch(setItemsLoading());
@@ -13,8 +14,9 @@ export const getItems = () => (dispatch) => {
   });
 };
 
-export const deleteItem = (_id) => (dispatch) => {
-  axios.delete(`http://localhost:5000/api/items/${_id}`).then((res) => {
+export const deleteItem = (_id) => (dispatch,getState) => {
+
+  axios.delete(`http://localhost:5000/api/items/${_id}`, tokenConfig(getState)).then((res) => {
     dispatch({
       type: DELETE_ITEM,
       payload: _id,
