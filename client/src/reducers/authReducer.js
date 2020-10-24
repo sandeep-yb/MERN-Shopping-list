@@ -19,14 +19,14 @@ const initialState = {
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case USER_LOADING:
-      console.log("User loading");
+      //console.log("User loading");
       return {
         ...state,
         isLoading: true,
       };
 
     case USER_LOADED:
-      console.log("user loaded");
+      //console.log("user loaded");
       return {
         ...state,
         isLoading: false,
@@ -37,9 +37,10 @@ const authReducer = (state = initialState, action) => {
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
       localStorage.setItem("token", action.payload.token);
-      console.log(
-        "after login -> token from localstorage" + localStorage.getItem("token")
-      );
+    //   //console.log(
+    //     "after login -> token from localstorage" + localStorage.getItem("token")
+    //   );
+
       return {
         ...state,
         ...action.payload,
