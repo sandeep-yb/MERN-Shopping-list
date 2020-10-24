@@ -9,6 +9,7 @@ import {
   NavLink,
   Container,
 } from "reactstrap";
+import { connect } from "react-redux";
 import RegisterModal from "./auth/RegisterModal";
 import Logout from "./auth/Logout";
 import LoginModal from "./auth/LoginModal";
@@ -25,6 +26,32 @@ class NavBar extends Component {
   };
 
   render() {
+    const { isAuthenticated, user } = this.props.auth;
+
+    const authLinks = (
+      <>
+        <NavItem>
+          <span className="navbar-text mr-3">
+            <strong>{user ? user.name : null}</strong>
+          </span>
+        </NavItem>
+        <NavItem>
+          <Logout />
+        </NavItem>
+      </>
+    );
+
+    const guestLinks = (
+      <>
+        <NavItem>
+          <RegisterModal />
+        </NavItem>
+        <NavItem>
+          <LoginModal />
+        </NavItem>
+      </>
+    );
+
     return (
       <div>
         <Navbar color="dark" dark expand="sm" className="mb-5">
@@ -32,16 +59,8 @@ class NavBar extends Component {
             <NavbarBrand href="/">ShoppingList</NavbarBrand>
             <NavbarToggler onClick={this.handleToggle}></NavbarToggler>
             <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className="ml-auto">
-                <NavItem>
-                  <RegisterModal />
-                </NavItem>
-                <NavItem>
-                  <LoginModal />
-                </NavItem>
-                <NavItem>
-                  <Logout />
-                </NavItem>
+              <Nav className="ml-auto" navbar>
+                {isAuthenticated ? authLinks : guestLinks}
               </Nav>
             </Collapse>
           </Container>
@@ -51,4 +70,8 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, {})(NavBar);

@@ -16,8 +16,8 @@ export const loadUser = () => (dispatch, getState) => {
   dispatch(setUserLoading());
 
   const token = getState().auth.token;
-  console.log("inside loadUser token ", token);
-  console.log("inside loadUser localstorage " + localStorage.getItem("token"));
+//   console.log("inside loadUser token ", token);
+//   console.log("inside loadUser localstorage " + localStorage.getItem("token"));
 
   axios
     .get("http://localhost:5000/api/auth/user", tokenConfig(getState))

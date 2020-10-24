@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 
 class App extends Component {
   componentDidMount() {
-    // console.log('CDM',this.props.token);
+    console.log("CDM", this.props.token);
     this.props.loadUser();
   }
 
