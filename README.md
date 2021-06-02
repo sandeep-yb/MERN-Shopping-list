@@ -6,6 +6,8 @@ Application link https://hidden-meadow-87767.herokuapp.com/
 
 Created using `MERN` stack.
 
+Note: The authentication was working on localhost but not after deployment.So I rolled back the application to previous version that did not have any authentication.
+
 ## Quick set up
 Replace the MONGO_URI with yours in the /config/keys file.
 ```
